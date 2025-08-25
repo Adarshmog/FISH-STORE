@@ -5,132 +5,186 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GT Fish Store - Fresh & Healthy</title>
   <style>
+    /* Global Styles */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
-      color: #222;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #00c6ff);
+      color: #fff;
+      overflow-x: hidden;
     }
+
+    h1, h2, h3 { letter-spacing: 1px; }
+
+    /* Header */
     header {
-      background: linear-gradient(to right, #004d66, #0099cc);
-      color: white;
-      padding: 20px;
       text-align: center;
-      animation: fadeInDown 1.5s ease;
+      padding: 30px;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      animation: slideDown 1.5s ease;
     }
     header h1 {
       margin: 0;
-      font-size: 3em;
+      font-size: 3.5em;
+      text-shadow: 2px 2px 12px #000;
+      animation: glow 2s infinite alternate;
     }
+    header p {
+      margin-top: 10px;
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    /* Navigation */
     nav {
       display: flex;
       justify-content: center;
-      background: #006994;
+      background: rgba(255,255,255,0.1);
       padding: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav a {
       color: white;
       margin: 0 20px;
       text-decoration: none;
-      font-size: 1.2em;
-      transition: 0.3s;
+      font-size: 1.1em;
+      transition: 0.4s;
+      position: relative;
     }
-    nav a:hover {
-      color: #ffcc00;
-      transform: scale(1.1);
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 3px;
+      background: #ffcc00;
+      bottom: -5px;
+      left: 0;
+      transition: 0.4s;
     }
-    .hero {
-      text-align: center;
-      padding: 60px;
-      background: url("https://cdn.pixabay.com/photo/2017/03/27/13/28/fish-2179236_1280.png") no-repeat center;
-      background-size: contain;
-      animation: fadeIn 3s ease-in;
-    }
-    .hero h2 {
-      font-size: 2.5em;
-      color: #004d66;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    }
+    nav a:hover::after { width: 100%; }
+    nav a:hover { color: #ffcc00; }
+
+    /* Sections */
     section {
-      padding: 40px;
-      animation: fadeIn 1.5s ease;
+      padding: 60px 10%;
+      animation: fadeIn 2s ease-in;
     }
+
+    /* Fish Cards */
     .fish-card {
-      background: #f0faff;
+      background: rgba(255,255,255,0.1);
       margin: 20px 0;
       padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
-      transition: 0.3s;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      transition: 0.4s;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
     .fish-card:hover {
-      transform: scale(1.02);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
     .fish-card h3 {
-      color: #006994;
-      margin-bottom: 8px;
+      color: #ffcc00;
     }
+
+    /* Menu */
+    ul li {
+      font-size: 1.2em;
+      padding: 8px;
+      transition: 0.3s;
+    }
+    ul li:hover {
+      transform: scale(1.05);
+      color: #ffcc00;
+    }
+
+    /* Order Form */
     .order-form, .query-form {
-      background: #fdfdfd;
+      background: rgba(255,255,255,0.12);
       padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-      margin: 20px 0;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
     .order-form input, .order-form select,
     .query-form input, .query-form textarea {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    input::placeholder, textarea::placeholder {
+      color: #eee;
     }
     .btn {
-      background: #0099cc;
+      background: linear-gradient(45deg, #ff9800, #ff5722);
       color: white;
       border: none;
-      padding: 12px 20px;
+      padding: 12px 25px;
       cursor: pointer;
       font-size: 1.1em;
       border-radius: 8px;
       transition: 0.3s;
     }
     .btn:hover {
-      background: #004d66;
+      transform: scale(1.1);
+      background: linear-gradient(45deg, #ffcc00, #ff6600);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
+    #totalPrice {
+      font-size: 1.3em;
+      margin-top: 15px;
+      color: #ffcc00;
+    }
+
+    /* Footer */
     footer {
-      background: #004d66;
-      color: white;
+      background: #111;
       text-align: center;
-      padding: 25px;
-      margin-top: 30px;
+      padding: 30px;
+      margin-top: 40px;
     }
-    footer p { margin: 5px; }
+    footer p {
+      margin: 5px;
+      color: #bbb;
+    }
+
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00c6ff; }
+      to { text-shadow: 0 0 20px #ffcc00; }
+    }
   </style>
   <script>
     function calculateTotal() {
-      let salmon = document.getElementById("salmon").value || 0;
-      let tuna = document.getElementById("tuna").value || 0;
-      let prawns = document.getElementById("prawns").value || 0;
-      let crab = document.getElementById("crab").value || 0;
-      let lobster = document.getElementById("lobster").value || 0;
-      let squid = document.getElementById("squid").value || 0;
+      let items = {
+        salmon: 500, tuna: 700, prawns: 400,
+        crab: 600, lobster: 1200, squid: 450
+      };
 
-      let priceList = { salmon: 500, tuna: 700, prawns: 400, crab: 600, lobster: 1200, squid: 450 };
+      let total = 0;
+      let summary = "Order Summary:\n";
 
-      let total = (salmon * priceList.salmon) +
-                  (tuna * priceList.tuna) +
-                  (prawns * priceList.prawns) +
-                  (crab * priceList.crab) +
-                  (lobster * priceList.lobster) +
-                  (squid * priceList.squid);
+      for (let item in items) {
+        let qty = document.getElementById(item).value || 0;
+        if (qty > 0) {
+          total += qty * items[item];
+          summary += `${item.charAt(0).toUpperCase() + item.slice(1)} (${qty}kg) - ₹${qty * items[item]}\n`;
+        }
+      }
 
       document.getElementById("totalPrice").innerText = "Total Price: ₹" + total;
+      document.getElementById("orderSummary").value = summary + "\nTotal: ₹" + total;
     }
   </script>
 </head>
@@ -147,10 +201,6 @@
     <a href="#query">Query</a>
     <a href="#contact">Contact</a>
   </nav>
-
-  <div class="hero">
-    <h2>Premium Quality Seafood, Straight from the Ocean</h2>
-  </div>
 
   <section id="about">
     <h2>About Our Seafood</h2>
@@ -176,8 +226,9 @@
 
   <section id="order">
     <h2>Order Now</h2>
-    <!-- Formspree Integration -->
-    <form class="order-form" action="https://formspree.io/f/your-form-id" method="POST" oninput="calculateTotal()">
+    <form class="order-form" action="https://formsubmit.co/el/wuriso" method="POST" oninput="calculateTotal()">
+      <input type="hidden" name="_subject" value="New Order from GT Fish Store">
+
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       
@@ -199,6 +250,8 @@
       <label>Squid (kg):</label>
       <input type="number" id="squid" name="squid" min="0" value="0">
 
+      <textarea id="orderSummary" name="orderSummary" readonly style="height:120px;margin-top:15px;"></textarea>
+
       <p id="totalPrice">Total Price: ₹0</p>
       <button class="btn" type="submit">Place Order</button>
     </form>
@@ -206,7 +259,9 @@
 
   <section id="query">
     <h2>Customer Query</h2>
-    <form class="query-form" action="https://formspree.io/f/your-form-id" method="POST">
+    <form class="query-form" action="https://formsubmit.co/el/wuriso" method="POST">
+      <input type="hidden" name="_subject" value="Customer Query - GT Fish Store">
+
       <input type="text" name="name" placeholder="Your Name" required>
       <input type="email" name="email" placeholder="Your Email" required>
       <textarea name="query" placeholder="Write your query..." rows="5" required></textarea>
