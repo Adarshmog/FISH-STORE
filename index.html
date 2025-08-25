@@ -3,197 +3,222 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GT Fish Shop - Fresh Seafood</title>
+  <title>GT Fish Store - Fresh & Healthy</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f0f8ff;
-      color: #333;
+      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+      color: #222;
     }
     header {
-      background: #006994;
+      background: linear-gradient(to right, #004d66, #0099cc);
       color: white;
-      text-align: center;
       padding: 20px;
+      text-align: center;
+      animation: fadeInDown 1.5s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
     }
     nav {
-      background: #004d66;
-      padding: 10px;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      background: #006994;
+      padding: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
     nav a {
       color: white;
-      margin: 0 15px;
+      margin: 0 20px;
       text-decoration: none;
-      font-weight: bold;
+      font-size: 1.2em;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
+    }
+    .hero {
+      text-align: center;
+      padding: 60px;
+      background: url("https://cdn.pixabay.com/photo/2017/03/27/13/28/fish-2179236_1280.png") no-repeat center;
+      background-size: contain;
+      animation: fadeIn 3s ease-in;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+      color: #004d66;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
     }
     section {
-      padding: 30px;
+      padding: 40px;
+      animation: fadeIn 1.5s ease;
     }
     .fish-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      background: #f0faff;
+      margin: 20px 0;
       padding: 20px;
-      margin: 20px;
-      display: inline-block;
-      width: 250px;
-      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.2);
+      transition: 0.3s;
     }
-    .fish-card img {
+    .fish-card:hover {
+      transform: scale(1.02);
+    }
+    .fish-card h3 {
+      color: #006994;
+      margin-bottom: 8px;
+    }
+    .order-form, .query-form {
+      background: #fdfdfd;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      margin: 20px 0;
+    }
+    .order-form input, .order-form select,
+    .query-form input, .query-form textarea {
       width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .order-form {
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-      max-width: 500px;
-      margin: auto;
-    }
-    .order-form input, .order-form select, .order-form textarea, .order-form button {
-      width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 8px 0;
       border-radius: 8px;
       border: 1px solid #ccc;
     }
-    .order-form button {
-      background: #006994;
+    .btn {
+      background: #0099cc;
       color: white;
-      font-weight: bold;
+      border: none;
+      padding: 12px 20px;
       cursor: pointer;
+      font-size: 1.1em;
+      border-radius: 8px;
+      transition: 0.3s;
     }
-    .benefits {
-      background: #e6f7ff;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 30px;
+    .btn:hover {
+      background: #004d66;
     }
     footer {
-      text-align: center;
-      padding: 15px;
       background: #004d66;
       color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 30px;
     }
+    footer p { margin: 5px; }
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
   </style>
+  <script>
+    function calculateTotal() {
+      let salmon = document.getElementById("salmon").value || 0;
+      let tuna = document.getElementById("tuna").value || 0;
+      let prawns = document.getElementById("prawns").value || 0;
+      let crab = document.getElementById("crab").value || 0;
+      let lobster = document.getElementById("lobster").value || 0;
+      let squid = document.getElementById("squid").value || 0;
+
+      let priceList = { salmon: 500, tuna: 700, prawns: 400, crab: 600, lobster: 1200, squid: 450 };
+
+      let total = (salmon * priceList.salmon) +
+                  (tuna * priceList.tuna) +
+                  (prawns * priceList.prawns) +
+                  (crab * priceList.crab) +
+                  (lobster * priceList.lobster) +
+                  (squid * priceList.squid);
+
+      document.getElementById("totalPrice").innerText = "Total Price: ₹" + total;
+    }
+  </script>
 </head>
 <body>
-
   <header>
-    <h1>🐟 GT Fish Shop</h1>
-    <p>Fresh & Healthy Seafood Delivered to Your Home</p>
+    <h1>🐟 GT Fish Store</h1>
+    <p>Fresh | Healthy | Delivered Daily</p>
   </header>
 
   <nav>
-    <a href="#fish">Our Fish</a>
-    <a href="#order">Order Now</a>
-    <a href="#benefits">Health Benefits</a>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#order">Order</a>
+    <a href="#query">Query</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <!-- Fish Section -->
-  <section id="fish">
-    <h2>Our Fresh Fish Collection</h2>
-    <div class="fish-card">
-      <img src="https://www.bbcgoodfood.com/sites/default/files/guide/guide-image/2018/07/salmon-main-image.jpg" alt="Salmon">
-      <h3>Salmon</h3>
-      <p>₹500 per Kg</p>
-    </div>
-    <div class="fish-card">
-      <img src="https://www.thespruceeats.com/thmb/XyPq4S2KjQ7F2kN_hs5dxQ0T9V0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/baked-whole-fish-4691035-hero-01-3a06d5b9ac5e49bfa9e55f7fa1ff6f5b.jpg" alt="Pomfret">
-      <h3>Pomfret</h3>
-      <p>₹700 per Kg</p>
-    </div>
-    <div class="fish-card">
-      <img src="https://5.imimg.com/data5/SELLER/Default/2020/12/ZB/TH/VH/39019016/mackerel-fish.jpg" alt="Mackerel">
-      <h3>Mackerel</h3>
-      <p>₹300 per Kg</p>
-    </div>
+  <div class="hero">
+    <h2>Premium Quality Seafood, Straight from the Ocean</h2>
+  </div>
+
+  <section id="about">
+    <h2>About Our Seafood</h2>
+    <div class="fish-card"><h3>Salmon</h3><p>Rich in Omega-3 fatty acids, boosts heart health and supports brain development.</p></div>
+    <div class="fish-card"><h3>Tuna</h3><p>High in protein and Vitamin D, strengthens muscles and immunity.</p></div>
+    <div class="fish-card"><h3>Prawns</h3><p>Low-fat protein source, contains Vitamin B12 and zinc for healthy skin and blood cells.</p></div>
+    <div class="fish-card"><h3>Crabs</h3><p>Excellent source of selenium and Omega-3, promotes joint and bone health.</p></div>
+    <div class="fish-card"><h3>Lobster</h3><p>Luxury seafood rich in copper, zinc, and Omega-3, supports nervous system health.</p></div>
+    <div class="fish-card"><h3>Squid</h3><p>High in phosphorus and protein, good for bone and muscle growth.</p></div>
   </section>
 
-  <!-- Order Section -->
+  <section id="menu">
+    <h2>Menu & Prices</h2>
+    <ul>
+      <li>Salmon - ₹500/kg</li>
+      <li>Tuna - ₹700/kg</li>
+      <li>Prawns - ₹400/kg</li>
+      <li>Crabs - ₹600/kg</li>
+      <li>Lobster - ₹1200/kg</li>
+      <li>Squid - ₹450/kg</li>
+    </ul>
+  </section>
+
   <section id="order">
-    <h2>Place Your Order</h2>
-    <form class="order-form" action="https://formsubmit.co/adarshmoger2000@gmail.com" method="POST">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://your-username.github.io/thankyou.html">
+    <h2>Order Now</h2>
+    <!-- Formspree Integration -->
+    <form class="order-form" action="https://formspree.io/f/your-form-id" method="POST" oninput="calculateTotal()">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      
+      <label>Salmon (kg):</label>
+      <input type="number" id="salmon" name="salmon" min="0" value="0">
 
-      <label>Name:</label>
-      <input type="text" name="name" required>
+      <label>Tuna (kg):</label>
+      <input type="number" id="tuna" name="tuna" min="0" value="0">
 
-      <label>Email:</label>
-      <input type="email" name="email" required>
+      <label>Prawns (kg):</label>
+      <input type="number" id="prawns" name="prawns" min="0" value="0">
 
-      <label>Fish Type:</label>
-      <select id="fishType" name="fishType" required>
-        <option value="Salmon" data-price="500">Salmon - ₹500/Kg</option>
-        <option value="Pomfret" data-price="700">Pomfret - ₹700/Kg</option>
-        <option value="Mackerel" data-price="300">Mackerel - ₹300/Kg</option>
-      </select>
+      <label>Crab (kg):</label>
+      <input type="number" id="crab" name="crab" min="0" value="0">
 
-      <label>Quantity (Kg):</label>
-      <input type="number" id="quantity" name="quantity" min="1" required>
+      <label>Lobster (kg):</label>
+      <input type="number" id="lobster" name="lobster" min="0" value="0">
 
-      <label>Total Price:</label>
-      <input type="text" id="totalPrice" name="totalPrice" readonly>
+      <label>Squid (kg):</label>
+      <input type="number" id="squid" name="squid" min="0" value="0">
 
-      <label>Address:</label>
-      <textarea name="address" rows="3" required></textarea>
-
-      <button type="submit">Place Order</button>
+      <p id="totalPrice">Total Price: ₹0</p>
+      <button class="btn" type="submit">Place Order</button>
     </form>
   </section>
 
-  <!-- Health Benefits Section -->
-  <section id="benefits">
-    <h2>Why Eat Fish?</h2>
-    <div class="benefits">
-      <p>✅ Rich in Omega-3 fatty acids – good for heart health</p>
-      <p>✅ High-quality protein for muscle growth</p>
-      <p>✅ Boosts brain function and memory</p>
-      <p>✅ Improves eyesight and skin glow</p>
-      <p>✅ A natural source of Vitamin D</p>
-    </div>
+  <section id="query">
+    <h2>Customer Query</h2>
+    <form class="query-form" action="https://formspree.io/f/your-form-id" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="query" placeholder="Write your query..." rows="5" required></textarea>
+      <button class="btn" type="submit">Submit Query</button>
+    </form>
   </section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p>📍 Location: Belke, Bhatkal</p>
-    <p>📞 Phone: 7348911064</p>
-    <p>📧 Email: adarshmoger2000@gmail.com</p>
-  </section>
-
-  <footer>
-    <p>© 2025 GT Fish Shop | Built with ❤️ in Bhatkal</p>
+  <footer id="contact">
+    <p>Developed by <b>Adarsh Moger</b></p>
+    <p>📍 Belke, Bhatkal | 📞 7348911064 | ✉️ adarshmoger2000@gmail.com</p>
+    <p>&copy; 2025 GT Fish Store. All rights reserved.</p>
   </footer>
-
-  <!-- JS for Price Calculation -->
-  <script>
-    const fishType = document.getElementById("fishType");
-    const quantity = document.getElementById("quantity");
-    const totalPrice = document.getElementById("totalPrice");
-
-    function calculatePrice() {
-      const price = fishType.options[fishType.selectedIndex].dataset.price;
-      const qty = quantity.value;
-      if (qty) {
-        totalPrice.value = "₹" + (price * qty);
-      } else {
-        totalPrice.value = "";
-      }
-    }
-
-    fishType.addEventListener("change", calculatePrice);
-    quantity.addEventListener("input", calculatePrice);
-  </script>
-
 </body>
 </html>
 
